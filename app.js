@@ -1,9 +1,11 @@
+'use strict';
 const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     customer = require('./controllers/customer'),
-    parking = require('./controllers/parking');
+    parking = require('./controllers/parking'),
+    logger = require('./config/logger');
 
 
 const PORT = 8080;
@@ -22,8 +24,12 @@ app.use('/parking', parking);
 app.get('/', (req, res) => {
     res.send('Hello Better World!')
 })
+logger.error('Test file logging');
 
 app.listen(PORT, () => {
-    console.log(`Local server started on port ${PORT}`);
+    logger.info(`Local server started on port ${PORT}`);
     return true;
 })
+
+
+module.exports = app; // for testing

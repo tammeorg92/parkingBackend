@@ -7,7 +7,7 @@ const expect = require('chai').expect,
 describe('Customer', () => { 
 
     describe('#getParkingDetails', () => { 
-        const sandbox = sinon.sandbox.create();
+        const sandbox = sinon.createSandbox();
         afterEach(() => { 
             sandbox.restore();
         })
@@ -46,7 +46,6 @@ describe('Customer', () => {
 
     describe('#geFeePrice' , () => { 
         let customer = new Customer();
-        it('Invalid parameters')
         it('Before 7am' , () => { 
             let mDate = moment('2018-05-04 06:59');
             let result = customer.getFeePrice(mDate);
@@ -65,7 +64,6 @@ describe('Customer', () => {
     })
     describe('#getHalfhours' , () => { 
         const customer = new Customer();
-        it('Invalid parameters');
         it('1 night hour' , () => { 
             let dateFrom = moment('2018-05-13 20:30');
             let dateTo = moment('2018-05-13 21:00');

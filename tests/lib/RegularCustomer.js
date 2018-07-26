@@ -7,7 +7,7 @@ const expect = require('chai').expect,
 describe('RegularCustomer', () => { 
 
     describe('#getParkingDetails', () => { 
-        const sandbox = sinon.sandbox.create();
+        const sandbox = sinon.createSandbox();
         afterEach(() => { 
             sandbox.restore();
         })

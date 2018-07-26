@@ -1,13 +1,15 @@
+'use strict';
 const express = require('express'),
     router = express.Router(),
     model = require('../lib/customerModel');
 
 
 router.get('/:customerName', async (req, res) => {
-    console.log(req.params);
+    if (!req.query.type) { 
+        return res.status(500).json({ message:'customer type missing'});
+    }
     const result = model.customerData(
         req.params.customerName,
-        req.query.month,
         req.query.type
     );
     if (result === null) {
@@ -17,7 +19,7 @@ router.get('/:customerName', async (req, res) => {
         return res.status(200).json({ data: result });
     }
     else {
-        return res.status(500).json({ message: result.err.message });
+        return res.status(500).json({ message:result.message});
     }
 })
 
